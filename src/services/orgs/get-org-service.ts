@@ -7,9 +7,7 @@ export class GetOrgService {
   constructor(private orgRepository: OrgRepository) {}
 
   async execute(orgId: string) {
-    const id = verify(orgId, env.JWT_SECRET);
-    
-    const org = await this.orgRepository.findById(id.sub);
+    const org = await this.orgRepository.findById(orgId);
 
     if(!org) throw new OrgNotFound("Organização não encontrada");
 

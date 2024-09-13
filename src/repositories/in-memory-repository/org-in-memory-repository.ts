@@ -1,6 +1,6 @@
 import { randomUUID } from "crypto";
 import { orgData, OrgRepository } from "../org-repository";
-import { Org } from "@prisma/client";
+import { Org, Prisma } from "@prisma/client";
 
 export class InMemroyOrgRepository implements OrgRepository {
   public orgs: orgData[] = [];
@@ -38,7 +38,7 @@ export class InMemroyOrgRepository implements OrgRepository {
     return org;
   }
 
-  async register(data: orgData) {
+  async register(data: Prisma.OrgCreateInput) {
     const newOrg: orgData = {
       id: data.id ?? randomUUID(),
       personInCharge: data.personInCharge,
